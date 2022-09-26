@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test\TestIn.h" />
+    <ClInclude Include="YSFIO\util.h" />
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
   </ItemGroup>
   <ItemGroup>

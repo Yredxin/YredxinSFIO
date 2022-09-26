@@ -15,6 +15,9 @@
     <ClInclude Include="test\TestIn.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="YSFIO\util.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
