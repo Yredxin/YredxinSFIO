@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="YSFIO">
+      <UniqueIdentifier>{f9bf781a-a1ea-426c-b37b-70165b7ebbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{4c4d588c-bdff-41c9-a4f9-e22609cc4264}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="YSFIO\YSFIOKernel.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="YSFIO\YSFIOKernel.cpp">
+      <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="test\main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="YSFIO\README.md">
+      <Filter>YSFIO</Filter>
+    </None>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>
