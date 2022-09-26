@@ -12,12 +12,18 @@
     <ClInclude Include="YSFIO\YSFIOKernel.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
+    <ClInclude Include="test\TestIn.h">
+      <Filter>Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
     <ClCompile Include="test\main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\TestIn.cpp">
       <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>

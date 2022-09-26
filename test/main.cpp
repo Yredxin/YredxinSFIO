@@ -4,7 +4,7 @@ using namespace std;
 
 int main(void)
 {
-	YSFIO::YSFIOKernel kernel;
+	auto& kernel = YSFIO::YSFIOKernel::GetInstance();
 	kernel.Run();
 	return 0;
 }

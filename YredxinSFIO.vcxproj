@@ -76,9 +76,11 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="test\main.cpp" />
+    <ClCompile Include="test\TestIn.cpp" />
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="test\TestIn.h" />
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
   </ItemGroup>
   <ItemGroup>
