@@ -57,14 +57,14 @@ void YSFIOKernel::Run()
 		/* 有事件产生 */
 		for (size_t i = 0; i < evNum; i++)
 		{
-			auto in = static_cast<TestIn*>(evs[i].data.ptr);
-			if (nullptr == in)
+			auto channel = static_cast<IYSFIOChannel*>(evs[i].data.ptr);
+			if (nullptr == channel)
 			{
 				continue;
 			}
 			string buf;
-			in->ReadFd(buf);
-			in->WriteFd(buf);
+			channel->ReadFd(buf);
+			channel->WriteFd(buf);
 		}
 	}
 }
@@ -74,7 +74,7 @@ YSFIOKernel& YSFIOKernel::GetInstance()
 	return m_instance;
 }
 
-bool YSFIO::YSFIOKernel::AddTestIn(std::shared_ptr<TestIn> _in)
+bool YSFIO::YSFIOKernel::AddIChannel(std::shared_ptr<IYSFIOChannel> _channel)
 {
 	bool bRet = false;
 	do
@@ -86,13 +86,13 @@ bool YSFIO::YSFIOKernel::AddTestIn(std::shared_ptr<TestIn> _in)
 		}
 		epoll_event ev;
 		ev.events = EPOLLIN;
-		ev.data.ptr = _in.get();
-		if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_ADD, 0, &ev))
+		ev.data.ptr = _channel.get();
+		if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_ADD, _channel->GetFd(), &ev))
 		{
 			LOG("epoll_ctl add error");
 			break;
 		}
-		in = _in;
+		m_channel = _channel;
 		bRet = true;
 	} while (false);
 	return bRet;
@@ -107,7 +107,7 @@ void YSFIO::YSFIOKernel::Fini()
 }
 
 YSFIOKernel::YSFIOKernel() :
-	in{ nullptr },
+	m_channel{ nullptr },
 	m_epollFd{ -1 }
 {
 }

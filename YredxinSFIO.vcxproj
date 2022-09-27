@@ -77,16 +77,27 @@
   <ItemGroup>
     <ClCompile Include="test\main.cpp" />
     <ClCompile Include="test\TestIn.cpp" />
+    <ClCompile Include="test\TestOut.cpp" />
+    <ClCompile Include="YSFIO\IYSFIOChannel.cpp" />
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test\TestIn.h" />
+    <ClInclude Include="test\TestOut.h" />
+    <ClInclude Include="YSFIO\IYSFIOChannel.h" />
     <ClInclude Include="YSFIO\util.h" />
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
     <None Include="YSFIO\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="YSFIO\images\V1.0.png" />
+    <Image Include="YSFIO\images\V1.1.png" />
+    <Image Include="YSFIO\images\V1.2.png" />
+    <Image Include="YSFIO\images\V1.3.png" />
+    <Image Include="YSFIO\images\V1.4.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

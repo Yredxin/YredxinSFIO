@@ -1,17 +1,13 @@
 ﻿#pragma once
-#include <string>
 #include "../YSFIO/IYSFIOChannel.h"
-#include "TestOut.h"
-
-class TestIn :
+class TestOut :
 	public YSFIO::IYSFIOChannel
 {
-	TestOut* out;
 public:
+	// 通过 IYSFIOChannel 继承
 	virtual bool ReadFd(std::string& _input) override;
 	virtual bool WriteFd(std::string& _output) override;
 	virtual std::string GetChannelInfo() override;
 	virtual int GetFd() override;
-	void AddOut(TestOut* _out);
 };
 

@@ -2,8 +2,7 @@
 #define _YSFIO_KERNEL_
 #include <memory>
 #include "util.h"
-
-#include "../test/TestIn.h"
+#include "IYSFIOChannel.h"
 
 namespace YSFIO
 {
@@ -21,7 +20,7 @@ namespace YSFIO
 		static YSFIOKernel& GetInstance();
 
 		/* 添加读写对象 */
-		bool AddTestIn(std::shared_ptr<TestIn> _in);
+		bool AddIChannel(std::shared_ptr<IYSFIOChannel> _channel);
 
 		/* 销毁epoll句柄 */
 		void Fini();
@@ -34,7 +33,7 @@ namespace YSFIO
 		/* 单例工厂对象 */
 		static YSFIOKernel m_instance;
 		/* 存储读写对象 */
-		std::shared_ptr<TestIn> in;
+		std::shared_ptr<IYSFIOChannel> m_channel;
 
 		/* epoll句柄 */
 		int m_epollFd;

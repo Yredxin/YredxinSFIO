@@ -2,7 +2,6 @@
 #include <iostream>
 
 using namespace std;
-
 bool TestIn::ReadFd(std::string& _input)
 {
 	cin >> _input;
@@ -11,6 +10,21 @@ bool TestIn::ReadFd(std::string& _input)
 
 bool TestIn::WriteFd(std::string& _output)
 {
-	cout << _output << endl;
+	out->WriteFd(_output);
 	return true;
+}
+
+std::string TestIn::GetChannelInfo()
+{
+	return std::string();
+}
+
+int TestIn::GetFd()
+{
+	return 0;
+}
+
+void TestIn::AddOut(TestOut* _out)
+{
+	out = _out;
 }
