@@ -3,20 +3,28 @@
 #include <string>
 #include <list>
 #include <memory>
+#include "AYSFIOHandle.h"
 
 namespace YSFIO
 {
-	class IYSFIOChannel :
-		public std::enable_shared_from_this<IYSFIOChannel>
+	/* 消息对象 */
+	struct ByteMsg :public AYSFIOMsg
 	{
-		std::list<std::string> m_lCacheMsg;
+		ByteMsg(AYSFIOMsg::MsgType _type) :AYSFIOMsg{ _type } {};
+		std::string msgData;
+		std::string msgInfo;
+	};
+
+	class IYSFIOChannel :
+		public std::enable_shared_from_this<IYSFIOChannel>,
+		public AYSFIOHandle
+	{
+		std::list<ByteMsg> m_lCacheMsg;
 	public:
 		/* 读通道 */
-		virtual bool ReadFd(std::string& _input) = 0;
-		/* 业务处理 */
-		virtual void Business(std::string& _msg) = 0;
+		virtual bool ReadFd(ByteMsg& _input) = 0;
 		/* 写通道 */
-		virtual bool WriteFd(std::string& _output) = 0;
+		virtual bool WriteFd(ByteMsg& _output) = 0;
 		/* 获取通道信息 */
 		virtual std::string GetChannelInfo() = 0;
 		/* 获取通道文件描述符 */
@@ -28,7 +36,13 @@ namespace YSFIO
 		/* 清理缓存 */
 		void CleanCache();
 		/* 发送 */
-		bool SendMsg(std::string& _output);
+		virtual ~IYSFIOChannel() = 0;
+		/* 获取下一个消息类型 */
+		virtual std::shared_ptr<IYSFIOChannel> GetInputNextStage(std::shared_ptr<ByteMsg> _msg) = 0;
+	private:
+		// 通过 AYSFIOHandle 继承
+		virtual std::shared_ptr<AYSFIOMsg> InternelHandle(std::shared_ptr<AYSFIOMsg> _msg) final;
+		virtual std::shared_ptr<AYSFIOHandle> GetNext(std::shared_ptr<AYSFIOMsg> _msg) final;
 	};
 }
 

@@ -66,12 +66,7 @@ void YSFIOKernel::Run()
 			}
 			if (EPOLLIN & evs[i].events)
 			{
-				/* 读事件产生 */
-				if (channel->ReadFd(sBuf))
-				{
-					/* 有读事件 */
-					channel->Business(sBuf);
-				}
+				channel->Handle(std::make_shared<ByteMsg>(AYSFIOMsg::MsgType::MSG_IN));
 			}
 			if (EPOLLOUT & evs[i].events)
 			{
@@ -215,6 +210,13 @@ void YSFIO::YSFIOKernel::Fini()
 	{
 		close(m_epollFd);
 	}
+}
+
+void YSFIO::YSFIOKernel::SendOut(std::string& _output, std::shared_ptr<AYSFIOHandle> _handle)
+{
+	auto msg = std::make_shared<ByteMsg>(AYSFIOMsg::MsgType::MSG_OUT);
+	msg->msgData = _output;
+	_handle->Handle(msg);
 }
 
 YSFIOKernel::YSFIOKernel() :

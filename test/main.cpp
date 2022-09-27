@@ -12,7 +12,7 @@ int main(void)
 	kernel.Init();
 	auto in = make_shared<TestIn>();
 	auto out = make_shared<TestOut>();
-	in->AddOut(out.get());
+	in->AddOut(out);
 	kernel.AddIChannel(in);
 	kernel.AddIChannel(out);
 	kernel.Run();

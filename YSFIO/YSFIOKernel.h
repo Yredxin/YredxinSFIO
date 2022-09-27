@@ -35,6 +35,9 @@ namespace YSFIO
 		/* 销毁epoll句柄 */
 		void Fini();
 
+		/* 向外输出 */
+		void SendOut(std::string& _output, std::shared_ptr<AYSFIOHandle> _handle);
+
 	private:
 		/* 隐藏构造和析构，实现单例模式 */
 		YSFIOKernel();

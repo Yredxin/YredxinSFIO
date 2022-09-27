@@ -30,6 +30,9 @@
     <ClInclude Include="test\TestOut.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="YSFIO\AYSFIOHandle.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
@@ -46,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="test\TestOut.cpp">
       <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="YSFIO\AYSFIOHandle.cpp">
+      <Filter>YSFIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +74,12 @@
       <Filter>YSFIO\resource</Filter>
     </Image>
     <Image Include="YSFIO\images\V1.4.png">
+      <Filter>YSFIO\resource</Filter>
+    </Image>
+    <Image Include="YSFIO\images\V1.5.png">
+      <Filter>YSFIO\resource</Filter>
+    </Image>
+    <Image Include="YSFIO\images\V1.6.png">
       <Filter>YSFIO\resource</Filter>
     </Image>
   </ItemGroup>

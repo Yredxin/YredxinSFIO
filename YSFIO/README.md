@@ -14,6 +14,7 @@
 - V1.3 高并发多路IO转接功能添加
 - V1.4 抽象输入输出类 --> **IYSFIOChannel**
 - V1.5 增加通道类功能
+- V1.6 采用责任链模式重构通道类 --> **AYSFIOHandle**
 
 # 迭代UML类图
 - V1.0   
@@ -28,3 +29,5 @@
     ![V1.4 UML图](./images/V1.4.png)
 - V1.5   
     ![V1.5 UML图](./images/V1.5.png)
+- V1.6   
+    ![V1.6 UML图](./images/V1.6.png)

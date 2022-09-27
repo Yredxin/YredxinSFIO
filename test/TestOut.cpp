@@ -3,14 +3,14 @@
 #include <unistd.h>
 using namespace std;
 
-bool TestOut::ReadFd(std::string& _input)
+bool TestOut::ReadFd(YSFIO::ByteMsg& _input)
 {
 	return false;
 }
 
-bool TestOut::WriteFd(std::string& _output)
+bool TestOut::WriteFd(YSFIO::ByteMsg& _output)
 {
-	SendMsg(_output);
+	cout << _output.msgData << endl;
 	return true;
 }
 
@@ -24,6 +24,7 @@ int TestOut::GetFd()
 	return STDOUT_FILENO;
 }
 
-void TestOut::Business(std::string& _msg)
+std::shared_ptr<YSFIO::IYSFIOChannel> TestOut::GetInputNextStage(std::shared_ptr<YSFIO::ByteMsg> _msg)
 {
+	return nullptr;
 }

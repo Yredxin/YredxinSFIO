@@ -1,14 +1,15 @@
 ﻿#include "TestIn.h"
 #include <iostream>
+#include "../YSFIO/YSFIOKernel.h"
 
 using namespace std;
-bool TestIn::ReadFd(std::string& _input)
+bool TestIn::ReadFd(YSFIO::ByteMsg& _input)
 {
-	cin >> _input;
+	cin >> _input.msgData;
 	return true;
 }
 
-bool TestIn::WriteFd(std::string& _output)
+bool TestIn::WriteFd(YSFIO::ByteMsg& _output)
 {
 	return false;
 }
@@ -23,12 +24,13 @@ int TestIn::GetFd()
 	return 0;
 }
 
-void TestIn::AddOut(TestOut* _out)
+void TestIn::AddOut(std::shared_ptr<TestOut>& _out)
 {
 	out = _out;
 }
 
-void TestIn::Business(std::string& _msg)
+std::shared_ptr<YSFIO::IYSFIOChannel> TestIn::GetInputNextStage(std::shared_ptr<YSFIO::ByteMsg> _msg)
 {
-	out->WriteFd(_msg);
+	YSFIO::YSFIOKernel::GetInstance().SendOut(_msg->msgData, out);
+	return nullptr;
 }
