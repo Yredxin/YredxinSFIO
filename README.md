@@ -1,5 +1,5 @@
 # YredxinSFIO
-> 框架学习自**[ZINX](https://github.com/marklion/zinx)**框架  
+> 框架学习自[ZINX](https://github.com/marklion/zinx)框架  
 
 # 目录分析
 - **[YSFIO](./YSFIO/)**   
