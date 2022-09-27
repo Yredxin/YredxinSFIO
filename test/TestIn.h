@@ -13,5 +13,6 @@ public:
 	virtual std::string GetChannelInfo() override;
 	virtual int GetFd() override;
 	void AddOut(TestOut* _out);
+	virtual void Business(std::string& _msg) override;
 };
 

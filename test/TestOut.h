@@ -9,5 +9,6 @@ public:
 	virtual bool WriteFd(std::string& _output) override;
 	virtual std::string GetChannelInfo() override;
 	virtual int GetFd() override;
+	virtual void Business(std::string& _msg) override;
 };
 

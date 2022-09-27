@@ -1,6 +1,7 @@
 ﻿#ifndef _YSFIO_KERNEL_
 #define _YSFIO_KERNEL_
 #include <memory>
+#include <list>
 #include "util.h"
 #include "IYSFIOChannel.h"
 
@@ -19,8 +20,17 @@ namespace YSFIO
 		/* 获取单例对象 */
 		static YSFIOKernel& GetInstance();
 
-		/* 添加读写对象 */
+		/* 添加通道对象 */
 		bool AddIChannel(std::shared_ptr<IYSFIOChannel> _channel);
+
+		/* 移除通道对象 */
+		bool DelIChannel(std::shared_ptr<IYSFIOChannel> _channel);
+
+		/* 给通道添加写事件检测 */
+		bool ModIChannel(std::shared_ptr<IYSFIOChannel> _channel);
+
+		/* 移除通道写事件检测 */
+		bool RemIChannel(std::shared_ptr<IYSFIOChannel> _channel);
 
 		/* 销毁epoll句柄 */
 		void Fini();
@@ -33,7 +43,8 @@ namespace YSFIO
 		/* 单例工厂对象 */
 		static YSFIOKernel m_instance;
 		/* 存储读写对象 */
-		std::shared_ptr<IYSFIOChannel> m_channel;
+		// std::shared_ptr<IYSFIOChannel> m_channel;
+		std::list<std::shared_ptr<IYSFIOChannel>> m_lChannel;
 
 		/* epoll句柄 */
 		int m_epollFd;

@@ -10,8 +10,7 @@ bool TestIn::ReadFd(std::string& _input)
 
 bool TestIn::WriteFd(std::string& _output)
 {
-	out->WriteFd(_output);
-	return true;
+	return false;
 }
 
 std::string TestIn::GetChannelInfo()
@@ -27,4 +26,9 @@ int TestIn::GetFd()
 void TestIn::AddOut(TestOut* _out)
 {
 	out = _out;
+}
+
+void TestIn::Business(std::string& _msg)
+{
+	out->WriteFd(_msg);
 }

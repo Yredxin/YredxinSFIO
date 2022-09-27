@@ -10,7 +10,7 @@ bool TestOut::ReadFd(std::string& _input)
 
 bool TestOut::WriteFd(std::string& _output)
 {
-	cout << _output << endl;
+	SendMsg(_output);
 	return true;
 }
 
@@ -22,4 +22,8 @@ std::string TestOut::GetChannelInfo()
 int TestOut::GetFd()
 {
 	return STDOUT_FILENO;
+}
+
+void TestOut::Business(std::string& _msg)
+{
 }

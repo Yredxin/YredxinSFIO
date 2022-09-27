@@ -3,6 +3,7 @@
 #include <string>
 #include <sys/epoll.h>
 #include <unistd.h>
+#include <algorithm>
 #include "util.h"
 using namespace std;
 using namespace YSFIO;
@@ -57,14 +58,38 @@ void YSFIOKernel::Run()
 		/* 有事件产生 */
 		for (size_t i = 0; i < evNum; i++)
 		{
+			string sBuf;
 			auto channel = static_cast<IYSFIOChannel*>(evs[i].data.ptr);
 			if (nullptr == channel)
 			{
 				continue;
 			}
-			string buf;
-			channel->ReadFd(buf);
-			channel->WriteFd(buf);
+			if (EPOLLIN & evs[i].events)
+			{
+				/* 读事件产生 */
+				if (channel->ReadFd(sBuf))
+				{
+					/* 有读事件 */
+					channel->Business(sBuf);
+				}
+			}
+			if (EPOLLOUT & evs[i].events)
+			{
+				for (auto& iter : m_lChannel)
+				{
+					if (iter.get() == channel)
+					{
+						RemIChannel(iter);
+						break;
+					}
+				}
+				/* 写事件产生 */
+				if (channel->IsCache())
+				{
+					channel->FlushCache();
+					channel->CleanCache();
+				}
+			}
 		}
 	}
 }
@@ -92,7 +117,93 @@ bool YSFIO::YSFIOKernel::AddIChannel(std::shared_ptr<IYSFIOChannel> _channel)
 			LOG("epoll_ctl add error");
 			break;
 		}
-		m_channel = _channel;
+		m_lChannel.push_back(_channel);
+		bRet = true;
+	} while (false);
+	return bRet;
+}
+
+bool YSFIO::YSFIOKernel::DelIChannel(std::shared_ptr<IYSFIOChannel> _channel)
+{
+	bool bRet = false;
+	do
+	{
+		if (!IsInit())
+		{
+			/* 未初始化 */
+			break;
+		}
+		auto iter = std::find(m_lChannel.begin(), m_lChannel.end(), _channel);
+		if (m_lChannel.end() == iter)
+		{
+			/* 参数错误 */
+			LOG("param error");
+			break;
+		}
+		if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_DEL, _channel->GetFd(), NULL))
+		{
+			LOG("epoll_ctl del error");
+			break;
+		}
+		m_lChannel.erase(iter);
+		bRet = true;
+	} while (false);
+	return bRet;
+}
+
+bool YSFIO::YSFIOKernel::ModIChannel(std::shared_ptr<IYSFIOChannel> _channel)
+{
+	bool bRet = false;
+	do
+	{
+		if (!IsInit())
+		{
+			/* 未初始化 */
+			break;
+		}
+		if (m_lChannel.end() == std::find(m_lChannel.begin(), m_lChannel.end(), _channel))
+		{
+			/* 参数错误 */
+			LOG("param error");
+			break;
+		}
+		epoll_event ev;
+		ev.events = EPOLLIN | EPOLLOUT;
+		ev.data.ptr = _channel.get();
+		if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_MOD, _channel->GetFd(), &ev))
+		{
+			LOG("epoll_ctl mod error");
+			break;
+		}
+		bRet = true;
+	} while (false);
+	return bRet;
+}
+
+bool YSFIO::YSFIOKernel::RemIChannel(std::shared_ptr<IYSFIOChannel> _channel)
+{
+	bool bRet = false;
+	do
+	{
+		if (!IsInit())
+		{
+			/* 未初始化 */
+			break;
+		}
+		if (m_lChannel.end() == std::find(m_lChannel.begin(), m_lChannel.end(), _channel))
+		{
+			/* 参数错误 */
+			LOG("param error");
+			break;
+		}
+		epoll_event ev;
+		ev.events = EPOLLIN;
+		ev.data.ptr = _channel.get();
+		if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_MOD, _channel->GetFd(), &ev))
+		{
+			LOG("epoll_ctl mod error");
+			break;
+		}
 		bRet = true;
 	} while (false);
 	return bRet;
@@ -107,7 +218,7 @@ void YSFIO::YSFIOKernel::Fini()
 }
 
 YSFIOKernel::YSFIOKernel() :
-	m_channel{ nullptr },
+	m_lChannel{ nullptr },
 	m_epollFd{ -1 }
 {
 }
