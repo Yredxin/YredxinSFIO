@@ -59,14 +59,14 @@ namespace YSFIO
 		/* 是否有缓存消息 */
 		inline bool IsCache() { return !m_lCacheMsg.empty(); };
 		/* 获取下一个消息类型，在堆上创建，内存交给框架 */
-		virtual IYSFIOChannel* GetInputNextStage(BytesMsg& _msg) = 0;
+		virtual AYSFIOHandle* GetInputNextStage(BytesMsg& _msg) = 0;
 	private:
 		/* 刷新缓存 */
 		void FlushCache();
 		/* 读写事件处理 */
 		virtual std::unique_ptr<YSFIOMsg> InternelHandle(YSFIOMsg& _msg) override final;
 		/* 获取数据处理下一个事件 */
-		virtual std::unique_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) override final;
+		virtual std::shared_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) override final;
 	};
 }
 

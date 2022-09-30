@@ -4,22 +4,19 @@
     <Filter Include="YSFIO">
       <UniqueIdentifier>{f9bf781a-a1ea-426c-b37b-70165b7ebbf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test">
-      <UniqueIdentifier>{4c4d588c-bdff-41c9-a4f9-e22609cc4264}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resources">
       <UniqueIdentifier>{b4d71fc8-8d42-45ff-bee2-bb01af640792}</UniqueIdentifier>
     </Filter>
     <Filter Include="YSFIO\resource">
       <UniqueIdentifier>{e015e19e-234d-4ca8-abf5-473dfe649e6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="example">
+      <UniqueIdentifier>{85d3d047-1be3-48fa-8ee0-c468b3857898}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="YSFIO\YSFIOKernel.h">
       <Filter>YSFIO</Filter>
-    </ClInclude>
-    <ClInclude Include="test\TestIn.h">
-      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="YSFIO\util.h">
       <Filter>YSFIO</Filter>
@@ -27,13 +24,16 @@
     <ClInclude Include="YSFIO\IYSFIOChannel.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
-    <ClInclude Include="test\TestOut.h">
-      <Filter>Test</Filter>
-    </ClInclude>
     <ClInclude Include="YSFIO\AYSFIOHandle.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
     <ClInclude Include="YSFIO\IYSFIOProtocol.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
+    <ClInclude Include="YSFIO\IYSFIORole.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
+    <ClInclude Include="YSFIO\IYSFIOHandle.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,22 +41,22 @@
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
-    <ClCompile Include="test\main.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\TestIn.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp">
       <Filter>YSFIO</Filter>
-    </ClCompile>
-    <ClCompile Include="test\TestOut.cpp">
-      <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
     <ClCompile Include="YSFIO\IYSFIOProtocol.cpp">
+      <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="YSFIO\IYSFIORole.cpp">
+      <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="example\SimpleExampleEcho.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
+    <ClCompile Include="YSFIO\IYSFIOHandle.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <algorithm>
 #include "util.h"
+
 using namespace std;
 using namespace YSFIO;
 
@@ -59,19 +60,51 @@ void YSFIOKernel::YSFIO_Run()
 	pYSFIOKernel->Run();
 }
 
-bool YSFIOKernel::YSFIO_AddChannel(std::shared_ptr<IYSFIOChannel> _channel)
+bool YSFIOKernel::YSFIO_AddChannel(IYSFIOChannel* _channel)
 {
-	bool bRet = false;
-	if (_channel->Init())
-	{
-		bRet = pYSFIOKernel->AddChannel(_channel);
-	}
+	std::shared_ptr<IYSFIOChannel> channel{ _channel };
+	bool bRet = pYSFIOKernel->AddChannel(channel);
+	channel.reset();
 	return bRet;
 }
 
-void YSFIOKernel::YSFIO_DelChannel(std::shared_ptr<IYSFIOChannel> _channel)
+void YSFIOKernel::YSFIO_DelChannel(IYSFIOChannel* _channel)
 {
-	pYSFIOKernel->DelChannel(_channel);
+	std::shared_ptr<IYSFIOChannel> channel{ _channel };
+	pYSFIOKernel->DelChannel(channel);
+	channel.reset();
+	return;
+}
+
+bool YSFIO::YSFIOKernel::YSFIO_AddProtocol(IYSFIOProtocol* _protocol)
+{
+	std::shared_ptr<IYSFIOProtocol> protocol{ _protocol };
+	bool bRet = pYSFIOKernel->AddProtocol(protocol);
+	protocol.reset();
+	return bRet;
+}
+
+void YSFIO::YSFIOKernel::YSFIO_DelProtocol(IYSFIOProtocol* _protocol)
+{
+	std::shared_ptr<IYSFIOProtocol> protocol{ _protocol };
+	pYSFIOKernel->DelProtocol(protocol);
+	protocol.reset();
+	return;
+}
+
+bool YSFIO::YSFIOKernel::YSFIO_AddRole(IYSFIORole* _role)
+{
+	std::shared_ptr<IYSFIORole> role{ _role };
+	bool bRet = pYSFIOKernel->AddRole(role);
+	role.reset();
+	return bRet;
+}
+
+void YSFIO::YSFIOKernel::YSFIO_DelRole(IYSFIORole* _role)
+{
+	std::shared_ptr<IYSFIORole> role{ _role };
+	pYSFIOKernel->DelRole(role);
+	role.reset();
 	return;
 }
 
@@ -81,11 +114,11 @@ void YSFIOKernel::YSFIO_Fini()
 	pYSFIOKernel.reset(nullptr);
 }
 
-void YSFIOKernel::YSFIO_SendOut(std::string& _output, std::shared_ptr<IYSFIOChannel> _channel)
+void YSFIOKernel::YSFIO_SendOut(std::string& _output, IYSFIOChannel& _channel)
 {
 	BytesMsg msg{ SysIoReadyMsg{SysIoReadyMsg::OUT} };
 	msg.msgData = _output;
-	_channel->Handle(msg);
+	_channel.Handle(msg);
 }
 
 YSFIOKernel::YSFIOKernel() :
@@ -189,6 +222,7 @@ void YSFIOKernel::Fini()
 
 bool YSFIOKernel::AddChannel(std::shared_ptr<IYSFIOChannel>& _channel)
 {
+
 	bool bRet = false;
 	do
 	{
@@ -197,7 +231,7 @@ bool YSFIOKernel::AddChannel(std::shared_ptr<IYSFIOChannel>& _channel)
 			LOG("需调用init初始化");
 			break;
 		}
-		if (nullptr == _channel)
+		if (nullptr == _channel || !_channel->Init())
 		{
 			break;
 		}
@@ -233,4 +267,32 @@ void YSFIOKernel::DelChannel(std::shared_ptr<IYSFIOChannel>& _channel)
 	m_lChannel.remove(_channel);
 	_channel->Fini();
 	return;
+}
+
+bool YSFIO::YSFIOKernel::AddProtocol(std::shared_ptr<IYSFIOProtocol>& _protocol)
+{
+	m_lProtocol.push_back(_protocol);
+	return true;
+}
+
+void YSFIO::YSFIOKernel::DelProtocol(std::shared_ptr<IYSFIOProtocol>& _protocol)
+{
+	m_lProtocol.remove(_protocol);
+}
+
+bool YSFIO::YSFIOKernel::AddRole(std::shared_ptr<IYSFIORole>& _role)
+{
+	bool bRet = false;
+	if (_role->Init())
+	{
+		m_lRole.push_back(_role);
+		bRet = true;
+	}
+	return bRet;
+}
+
+void YSFIO::YSFIOKernel::DelRole(std::shared_ptr<IYSFIORole>& _role)
+{
+	m_lRole.remove(_role);
+	_role->Fini();
 }

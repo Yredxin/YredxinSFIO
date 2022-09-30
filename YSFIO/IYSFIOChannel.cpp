@@ -11,9 +11,10 @@
 #include "IYSFIOChannel.h"
 #include <unistd.h>
 #include "YSFIOKernel.h"
+
 using namespace YSFIO;
 
-void IYSFIOChannel::FlushCache()
+void YSFIO::IYSFIOChannel::FlushCache()
 {
 	while (IsCache())
 	{
@@ -30,20 +31,6 @@ std::unique_ptr<YSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(YSFIOMsg& _msg)
 {
 	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
 	std::unique_ptr<YSFIOMsg> pRetMsg = nullptr;
-	if (SysIoReadyMsg::OUT & oSysMsg.type)
-	{
-		/* 事件包含写事件 */
-		GET_REF2DATA(BytesMsg, oBytes, oSysMsg);
-		if (!IsCache())
-		{
-			/* 数据缓存中没有数据，需要将channel的epoll写事件打开 */
-			YSFIOKernel::SetChannelOutEvent(*this);
-		}
-		/* 数据写入缓存 */
-		m_lCacheMsg.push_back(oBytes.msgData);
-		/* 移除写事件，以为是通道类，所以不能将写事件继续传递 */
-		oSysMsg.type = static_cast<SysIoReadyMsg::MsgType>(oSysMsg.type & ~SysIoReadyMsg::OUT);
-	}
 	if (SysIoReadyMsg::IN & oSysMsg.type)
 	{
 		/* 事件包含读事件 */
@@ -59,17 +46,31 @@ std::unique_ptr<YSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(YSFIOMsg& _msg)
 		}
 		msg = nullptr;
 	}
+	else if (SysIoReadyMsg::OUT & oSysMsg.type)
+	{
+		/* 事件包含写事件 */
+		GET_REF2DATA(BytesMsg, oBytes, oSysMsg);
+		if (!IsCache())
+		{
+			/* 数据缓存中没有数据，需要将channel的epoll写事件打开 */
+			YSFIOKernel::SetChannelOutEvent(*this);
+		}
+		/* 数据写入缓存 */
+		m_lCacheMsg.push_back(oBytes.msgData);
+		/* 移除写事件，以为是通道类，所以不能将写事件继续传递 */
+		oSysMsg.type = static_cast<SysIoReadyMsg::MsgType>(oSysMsg.type & ~SysIoReadyMsg::OUT);
+	}
 	return std::move(pRetMsg);
 }
 
-std::unique_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(YSFIOMsg& _msg)
+std::shared_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(YSFIOMsg& _msg)
 {
 	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
-	std::unique_ptr<AYSFIOHandle> pRetHandle = nullptr;
+	std::shared_ptr<AYSFIOHandle> pRetHandle = nullptr;
 	if (SysIoReadyMsg::IN & oSysMsg.type)
 	{
 		GET_REF2DATA(BytesMsg, oBytes, _msg);
 		pRetHandle.reset(GetInputNextStage(oBytes));
 	}
-	return std::move(pRetHandle);
+	return pRetHandle;
 }

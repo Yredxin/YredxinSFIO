@@ -25,7 +25,7 @@ namespace YSFIO
 	public:
 		void Handle(YSFIOMsg& _msg);
 		virtual std::unique_ptr<YSFIOMsg> InternelHandle(YSFIOMsg& _msg) = 0;
-		virtual std::unique_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) = 0;
+		virtual std::shared_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) = 0;
 		virtual ~AYSFIOHandle();
 	};
 }

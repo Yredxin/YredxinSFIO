@@ -14,6 +14,8 @@
 #include <list>
 #include "util.h"
 #include "IYSFIOChannel.h"
+#include "IYSFIOProtocol.h"
+#include "IYSFIORole.h"
 
 namespace YSFIO
 {
@@ -31,17 +33,31 @@ namespace YSFIO
 		/* 外部接口，框架启动 */
 		static void YSFIO_Run();
 
-		/* 添加通道对象 */
-		static bool YSFIO_AddChannel(std::shared_ptr<IYSFIOChannel> _channel);
+		/* 添加通道对象，堆内存交给内核管理 */
+		static bool YSFIO_AddChannel(IYSFIOChannel* _channel);
 
 		/* 移除通道对象 */
-		static void YSFIO_DelChannel(std::shared_ptr<IYSFIOChannel> _channel);
+		static void YSFIO_DelChannel(IYSFIOChannel* _channel);
+
+
+		/* 添加协议对象 */
+		static bool YSFIO_AddProtocol(IYSFIOProtocol* _protocol);
+
+		/* 移除协议对象 */
+		static void YSFIO_DelProtocol(IYSFIOProtocol* _protocol);
+
+
+		/* 添加角色对象 */
+		static bool YSFIO_AddRole(IYSFIORole* _role);
+
+		/* 移除角色对象 */
+		static void YSFIO_DelRole(IYSFIORole* _role);
 
 		/* 外部内核销毁接口，转发到内部Fini，用于销毁实例对象+epoll句柄 */
 		static void YSFIO_Fini();
 
 		/* 向外输出 */
-		static void YSFIO_SendOut(std::string& _output, std::shared_ptr<IYSFIOChannel> _channel);
+		static void YSFIO_SendOut(std::string& _output, IYSFIOChannel& _channel);
 
 		~YSFIOKernel();
 
@@ -54,6 +70,8 @@ namespace YSFIO
 
 		/* 存储读写对象 */
 		std::list<std::shared_ptr<IYSFIOChannel>> m_lChannel;
+		std::list<std::shared_ptr<IYSFIOProtocol>> m_lProtocol;
+		std::list<std::shared_ptr<IYSFIORole>> m_lRole;
 
 		/* epoll句柄 */
 		int m_epollFd;
@@ -64,6 +82,10 @@ namespace YSFIO
 		void Fini();
 		bool AddChannel(std::shared_ptr<IYSFIOChannel>& _channel);
 		void DelChannel(std::shared_ptr<IYSFIOChannel>& _channel);
+		bool AddProtocol(std::shared_ptr<IYSFIOProtocol>& _protocol);
+		void DelProtocol(std::shared_ptr<IYSFIOProtocol>& _protocol);
+		bool AddRole(std::shared_ptr<IYSFIORole>& _role);
+		void DelRole(std::shared_ptr<IYSFIORole>& _role);
 	};
 }
 
