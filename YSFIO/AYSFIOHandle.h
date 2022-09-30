@@ -4,18 +4,18 @@
 
 namespace YSFIO
 {
-	struct AYSFIOMsg
+	struct YSFIOMsg
 	{
-		AYSFIOMsg() = default;
-		virtual ~AYSFIOMsg() = default;
+		YSFIOMsg() = default;
+		virtual ~YSFIOMsg() = default;
 	};
 
 	class AYSFIOHandle
 	{
 	public:
-		void Handle(AYSFIOMsg& _msg);
-		virtual std::unique_ptr<AYSFIOMsg> InternelHandle(AYSFIOMsg& _msg) = 0;
-		virtual std::unique_ptr<AYSFIOHandle> GetNext(AYSFIOMsg& _msg) = 0;
+		void Handle(YSFIOMsg& _msg);
+		virtual std::unique_ptr<YSFIOMsg> InternelHandle(YSFIOMsg& _msg) = 0;
+		virtual std::unique_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) = 0;
 		virtual ~AYSFIOHandle();
 	};
 }

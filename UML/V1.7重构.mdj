@@ -292,7 +292,7 @@
 											"top": 199,
 											"width": 174,
 											"height": 13,
-											"text": "AYSFIOMsg"
+											"text": "YSFIOMsg"
 										},
 										{
 											"_type": "LabelView",
@@ -4167,7 +4167,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "AYSFIOMsg",
+					"name": "YSFIOMsg",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

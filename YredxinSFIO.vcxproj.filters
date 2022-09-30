@@ -82,5 +82,8 @@
     <Image Include="YSFIO\images\V1.6.png">
       <Filter>YSFIO\resource</Filter>
     </Image>
+    <Image Include="YSFIO\images\V1.7.png">
+      <Filter>YSFIO\resource</Filter>
+    </Image>
   </ItemGroup>
 </Project>

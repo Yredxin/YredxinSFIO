@@ -6,6 +6,12 @@
 - YSFIOKernel -- 内核，框架主体
 - IYSFIOChannel -- 输出通道抽象类，需要重写此类
 - AYSFIOHandle -- 业务处理类，继承此类写出你的处理
+- YSFIOMsg -- 责任链数据传递消息类
+- SysIoReadyMsg -- 通道内部数据传递消息类
+- BytesMsg -- 流式消息传递类，在个业务内相互
+
+# 最新类图
+![V1.7 UML图](./images/V1.7.png)
 
 # 迭代过程
 - V1.0 框架处理io数据 --> **YSFIOKernel**

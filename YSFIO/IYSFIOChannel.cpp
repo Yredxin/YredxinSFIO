@@ -16,10 +16,10 @@ void IYSFIOChannel::FlushCache()
 	m_lCacheMsg.clear();
 }
 
-std::unique_ptr<AYSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(AYSFIOMsg& _msg)
+std::unique_ptr<YSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(YSFIOMsg& _msg)
 {
 	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
-	std::unique_ptr<AYSFIOMsg> pRetMsg = nullptr;
+	std::unique_ptr<YSFIOMsg> pRetMsg = nullptr;
 	if (SysIoReadyMsg::OUT & oSysMsg.type)
 	{
 		/* 事件包含写事件 */
@@ -52,7 +52,7 @@ std::unique_ptr<AYSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(AYSFIOMsg& _msg)
 	return std::move(pRetMsg);
 }
 
-std::unique_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(AYSFIOMsg& _msg)
+std::unique_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(YSFIOMsg& _msg)
 {
 	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
 	std::unique_ptr<AYSFIOHandle> pRetHandle = nullptr;

@@ -1,6 +1,6 @@
 ﻿#include "AYSFIOHandle.h"
 
-void YSFIO::AYSFIOHandle::Handle(AYSFIOMsg& _msg)
+void YSFIO::AYSFIOHandle::Handle(YSFIOMsg& _msg)
 {
 	auto msg = InternelHandle(_msg);
 	if (nullptr == msg)

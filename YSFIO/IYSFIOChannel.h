@@ -7,7 +7,7 @@
 
 namespace YSFIO
 {
-	struct SysIoReadyMsg : public AYSFIOMsg
+	struct SysIoReadyMsg : public YSFIOMsg
 	{
 		enum MsgType :char
 		{
@@ -54,9 +54,9 @@ namespace YSFIO
 		/* 刷新缓存 */
 		void FlushCache();
 		/* 读写事件处理 */
-		virtual std::unique_ptr<AYSFIOMsg> InternelHandle(AYSFIOMsg& _msg) override final;
+		virtual std::unique_ptr<YSFIOMsg> InternelHandle(YSFIOMsg& _msg) override final;
 		/* 获取数据处理下一个事件 */
-		virtual std::unique_ptr<AYSFIOHandle> GetNext(AYSFIOMsg& _msg) override final;
+		virtual std::unique_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) override final;
 	};
 }
 
