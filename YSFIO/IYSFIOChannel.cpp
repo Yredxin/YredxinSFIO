@@ -1,4 +1,14 @@
-﻿#include "IYSFIOChannel.h"
+﻿/*************************************************************************************
+ *
+ * 文 件 名:	IYSFIOChannel.cpp
+ * 描    述:
+ *
+ * 版 本 号：  	V1.0
+ * 创 建 者：  	Yredxin -- 杨红心
+ * 创建时间： 	2022/9/29 9:08
+ *
+*************************************************************************************/
+#include "IYSFIOChannel.h"
 #include <unistd.h>
 #include "YSFIOKernel.h"
 using namespace YSFIO;

@@ -80,6 +80,7 @@
     <ClCompile Include="test\TestOut.cpp" />
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp" />
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp" />
+    <ClCompile Include="YSFIO\IYSFIOProtocol.cpp" />
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -87,11 +88,13 @@
     <ClInclude Include="test\TestOut.h" />
     <ClInclude Include="YSFIO\AYSFIOHandle.h" />
     <ClInclude Include="YSFIO\IYSFIOChannel.h" />
+    <ClInclude Include="YSFIO\IYSFIOProtocol.h" />
     <ClInclude Include="YSFIO\util.h" />
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+    <None Include="YredxinSFIO.licenseheader" />
     <None Include="YSFIO\README.md" />
   </ItemGroup>
   <ItemGroup>
