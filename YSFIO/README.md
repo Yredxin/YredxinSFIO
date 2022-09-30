@@ -15,6 +15,7 @@
 - V1.4 抽象输入输出类 --> **IYSFIOChannel**
 - V1.5 增加通道类功能
 - V1.6 采用责任链模式重构通道类 --> **AYSFIOHandle**
+- V1.7 代码重构，优化代码结构，优化内存管理
 
 # 迭代UML类图
 - V1.0   
@@ -31,3 +32,5 @@
     ![V1.5 UML图](./images/V1.5.png)
 - V1.6   
     ![V1.6 UML图](./images/V1.6.png)
+- V1.7   
+    ![V1.7 UML图](./images/V1.7.png)

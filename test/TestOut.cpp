@@ -3,14 +3,23 @@
 #include <unistd.h>
 using namespace std;
 
-bool TestOut::ReadFd(YSFIO::ByteMsg& _input)
+bool TestOut::Init()
+{
+	return true;
+}
+
+void TestOut::Fini()
+{
+}
+
+bool TestOut::ReadFd(std::string& _input)
 {
 	return false;
 }
 
-bool TestOut::WriteFd(YSFIO::ByteMsg& _output)
+bool TestOut::WriteFd(std::string& _output)
 {
-	cout << _output.msgData << endl;
+	cout << _output << endl;
 	return true;
 }
 
@@ -21,10 +30,10 @@ std::string TestOut::GetChannelInfo()
 
 int TestOut::GetFd()
 {
-	return STDOUT_FILENO;
+	return 1;
 }
 
-std::shared_ptr<YSFIO::IYSFIOChannel> TestOut::GetInputNextStage(std::shared_ptr<YSFIO::ByteMsg> _msg)
+YSFIO::IYSFIOChannel* TestOut::GetInputNextStage(YSFIO::BytesMsg& _msg)
 {
 	return nullptr;
 }

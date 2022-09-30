@@ -5,66 +5,61 @@ using namespace YSFIO;
 
 void IYSFIOChannel::FlushCache()
 {
-	while (!m_lCacheMsg.empty())
+	while (IsCache())
 	{
-		if (WriteFd(m_lCacheMsg.front()))
-		{
-			m_lCacheMsg.pop_front();
-		}
-		else
+		if (!WriteFd(m_lCacheMsg.front()))
 		{
 			break;
 		}
+		m_lCacheMsg.pop_front();
 	}
-}
-
-void IYSFIOChannel::CleanCache()
-{
 	m_lCacheMsg.clear();
 }
 
-YSFIO::IYSFIOChannel::~IYSFIOChannel()
+std::unique_ptr<AYSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(AYSFIOMsg& _msg)
 {
-}
-
-std::shared_ptr<AYSFIOMsg> YSFIO::IYSFIOChannel::InternelHandle(std::shared_ptr<AYSFIOMsg> _msg)
-{
-	GET_REF2DATA(ByteMsg, oByte, *_msg);
-	std::shared_ptr<AYSFIOMsg> msgRet{ nullptr };
-
-	switch (oByte.type)
+	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
+	std::unique_ptr<AYSFIOMsg> pRetMsg = nullptr;
+	if (SysIoReadyMsg::OUT & oSysMsg.type)
 	{
-	case AYSFIOMsg::MsgType::MSG_IN:
+		/* 事件包含写事件 */
+		GET_REF2DATA(BytesMsg, oBytes, oSysMsg);
+		if (!IsCache())
+		{
+			/* 数据缓存中没有数据，需要将channel的epoll写事件打开 */
+			YSFIOKernel::SetChannelOutEvent(*this);
+		}
+		/* 数据写入缓存 */
+		m_lCacheMsg.push_back(oBytes.msgData);
+		/* 移除写事件，以为是通道类，所以不能将写事件继续传递 */
+		oSysMsg.type = static_cast<SysIoReadyMsg::MsgType>(oSysMsg.type & ~SysIoReadyMsg::OUT);
+	}
+	if (SysIoReadyMsg::IN & oSysMsg.type)
 	{
-		auto msg = new ByteMsg{ _msg->type };
-		if (ReadFd(*msg))
+		/* 事件包含读事件 */
+		auto msg = new BytesMsg{ oSysMsg };
+		if (true == ReadFd(msg->msgData))
 		{
 			msg->msgInfo = GetChannelInfo();
-			msgRet.reset(msg);
+			pRetMsg.reset(msg);
 		}
 		else
 		{
 			delete msg;
 		}
-		break;
+		msg = nullptr;
 	}
-	case AYSFIOMsg::MsgType::MSG_OUT:
-	{
-		m_lCacheMsg.push_back(oByte);
-		YSFIOKernel::GetInstance().ModIChannel(shared_from_this());
-		break;
-	}
-	}
-	return msgRet;
+	return std::move(pRetMsg);
 }
 
-std::shared_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(std::shared_ptr<AYSFIOMsg> _msg)
+std::unique_ptr<AYSFIOHandle> YSFIO::IYSFIOChannel::GetNext(AYSFIOMsg& _msg)
 {
-	std::shared_ptr<AYSFIOHandle> handle{ nullptr };
-	if (AYSFIOMsg::MsgType::MSG_IN == _msg->type)
+	GET_REF2DATA(SysIoReadyMsg, oSysMsg, _msg);
+	std::unique_ptr<AYSFIOHandle> pRetHandle = nullptr;
+	if (SysIoReadyMsg::IN & oSysMsg.type)
 	{
-		GET_REF2DATA(ByteMsg, oBytes, *_msg);
-		handle = GetInputNextStage(std::make_shared<ByteMsg>(oBytes));
+		GET_REF2DATA(BytesMsg, oBytes, _msg);
+		pRetHandle.reset(GetInputNextStage(oBytes));
 	}
-	return handle;
+	return std::move(pRetHandle);
 }

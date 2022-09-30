@@ -1,15 +1,31 @@
 ﻿#include "TestIn.h"
 #include <iostream>
+#include <unistd.h>
 #include "../YSFIO/YSFIOKernel.h"
 
 using namespace std;
-bool TestIn::ReadFd(YSFIO::ByteMsg& _input)
+
+void TestIn::AddStdOut(std::shared_ptr<TestOut>& _out)
 {
-	cin >> _input.msgData;
+	out = _out;
+}
+
+bool TestIn::Init()
+{
 	return true;
 }
 
-bool TestIn::WriteFd(YSFIO::ByteMsg& _output)
+void TestIn::Fini()
+{
+}
+
+bool TestIn::ReadFd(std::string& _input)
+{
+	cin >> _input;
+	return true;
+}
+
+bool TestIn::WriteFd(std::string& _output)
 {
 	return false;
 }
@@ -24,13 +40,8 @@ int TestIn::GetFd()
 	return 0;
 }
 
-void TestIn::AddOut(std::shared_ptr<TestOut>& _out)
+YSFIO::IYSFIOChannel* TestIn::GetInputNextStage(YSFIO::BytesMsg& _msg)
 {
-	out = _out;
-}
-
-std::shared_ptr<YSFIO::IYSFIOChannel> TestIn::GetInputNextStage(std::shared_ptr<YSFIO::ByteMsg> _msg)
-{
-	YSFIO::YSFIOKernel::GetInstance().SendOut(_msg->msgData, out);
+	YSFIO::YSFIOKernel::YSFIO_SendOut(_msg.msgData, out);
 	return nullptr;
 }

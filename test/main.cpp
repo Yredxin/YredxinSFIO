@@ -4,18 +4,18 @@
 #include "TestIn.h"
 #include "TestOut.h"
 #include "../YSFIO/util.h"
+#include <sys/epoll.h>
 using namespace std;
 
 int main(void)
 {
-	auto& kernel = YSFIO::YSFIOKernel::GetInstance();
-	kernel.Init();
-	auto in = make_shared<TestIn>();
-	auto out = make_shared<TestOut>();
-	in->AddOut(out);
-	kernel.AddIChannel(in);
-	kernel.AddIChannel(out);
-	kernel.Run();
-	kernel.Fini();
+	YSFIO::YSFIOKernel::YSFIO_Init();
+	shared_ptr<TestIn> in = make_shared<TestIn>();
+	shared_ptr<TestOut> out = make_shared<TestOut>();
+	in->AddStdOut(out);
+	YSFIO::YSFIOKernel::YSFIO_AddChannel(in);
+	YSFIO::YSFIOKernel::YSFIO_AddChannel(out);
+	YSFIO::YSFIOKernel::YSFIO_Run();
+	YSFIO::YSFIOKernel::YSFIO_Fini();
 	return 0;
 }

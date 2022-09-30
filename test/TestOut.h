@@ -4,13 +4,14 @@ class TestOut :
 	public YSFIO::IYSFIOChannel
 {
 public:
-	// 通过 IYSFIOChannel 继承
-	virtual bool ReadFd(YSFIO::ByteMsg& _input) override;
-	virtual bool WriteFd(YSFIO::ByteMsg& _output) override;
-	virtual std::string GetChannelInfo() override;
-	virtual int GetFd() override;
 
 	// 通过 IYSFIOChannel 继承
-	virtual std::shared_ptr<YSFIO::IYSFIOChannel> GetInputNextStage(std::shared_ptr<YSFIO::ByteMsg> _msg) override;
+	virtual bool Init() override;
+	virtual void Fini() override;
+	virtual bool ReadFd(std::string& _input) override;
+	virtual bool WriteFd(std::string& _output) override;
+	virtual std::string GetChannelInfo() override;
+	virtual int GetFd() override;
+	virtual YSFIO::IYSFIOChannel* GetInputNextStage(YSFIO::BytesMsg& _msg) override;
 };
 
