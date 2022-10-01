@@ -10,48 +10,6 @@
 *************************************************************************************/
 #ifndef _YSFIO_IPROTOCOL_
 #define _YSFIO_IPROTOCOL_
-#include <memory>
-#include <string>
-#include "AYSFIOHandle.h"
-#include "IYSFIOChannel.h"
-
-namespace YSFIO
-{
-	class IYSFIORole;
-
-	struct UserData
-	{
-		UserData() = default;
-		virtual ~UserData() = default;
-	};
-	struct UserDataMsg :public BytesMsg
-	{
-		UserDataMsg(const BytesMsg& _bytesMsg) :BytesMsg{ _bytesMsg } {};
-		std::unique_ptr<UserData> pUserData = nullptr;
-		virtual ~UserDataMsg() = default;
-	};
-
-	class IYSFIOProtocol :
-		public AYSFIOHandle
-	{
-	public:
-		IYSFIOProtocol() = default;
-		virtual ~IYSFIOProtocol() = default;
-		/* 流数据->用户数据 */
-		virtual UserData* Raw2Request(std::string& _input) = 0;
-		/* 用户数据->流数据 */
-		virtual std::string* Response2Raw(UserData& _userData) = 0;
-
-		/* 获取角色对象 */
-		virtual	IYSFIORole* GetProcRole(UserDataMsg& _msg) = 0;
-		/* 获取通道对象 */
-		virtual	IYSFIOChannel* GetSenderChannel(BytesMsg& _msg) = 0;
-	private:
-		// 通过 AYSFIOHandle 继承
-		virtual std::unique_ptr<YSFIOMsg> InternelHandle(YSFIOMsg& _msg) override;
-		virtual std::shared_ptr<AYSFIOHandle> GetNext(YSFIOMsg& _msg) override;
-	};
-}
 
 #endif // !_YSFIO_IPROTOCOL_
 

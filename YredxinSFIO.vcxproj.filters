@@ -21,9 +21,6 @@
     <ClInclude Include="YSFIO\util.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
-    <ClInclude Include="YSFIO\IYSFIOChannel.h">
-      <Filter>YSFIO</Filter>
-    </ClInclude>
     <ClInclude Include="YSFIO\AYSFIOHandle.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
@@ -33,15 +30,12 @@
     <ClInclude Include="YSFIO\IYSFIORole.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
-    <ClInclude Include="YSFIO\IYSFIOHandle.h">
+    <ClInclude Include="YSFIO\IYSFIOChannel.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
-      <Filter>YSFIO</Filter>
-    </ClCompile>
-    <ClCompile Include="YSFIO\IYSFIOChannel.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp">
@@ -56,7 +50,7 @@
     <ClCompile Include="example\SimpleExampleEcho.cpp">
       <Filter>example</Filter>
     </ClCompile>
-    <ClCompile Include="YSFIO\IYSFIOHandle.cpp">
+    <ClCompile Include="YSFIO\IYSFIOChannel.cpp">
       <Filter>YSFIO</Filter>
     </ClCompile>
   </ItemGroup>

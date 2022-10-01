@@ -78,7 +78,6 @@
     <ClCompile Include="example\SimpleExampleEcho.cpp" />
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp" />
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp" />
-    <ClCompile Include="YSFIO\IYSFIOHandle.cpp" />
     <ClCompile Include="YSFIO\IYSFIOProtocol.cpp" />
     <ClCompile Include="YSFIO\IYSFIORole.cpp" />
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
@@ -86,7 +85,6 @@
   <ItemGroup>
     <ClInclude Include="YSFIO\AYSFIOHandle.h" />
     <ClInclude Include="YSFIO\IYSFIOChannel.h" />
-    <ClInclude Include="YSFIO\IYSFIOHandle.h" />
     <ClInclude Include="YSFIO\IYSFIOProtocol.h" />
     <ClInclude Include="YSFIO\IYSFIORole.h" />
     <ClInclude Include="YSFIO\util.h" />
