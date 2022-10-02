@@ -10,6 +10,42 @@
 *************************************************************************************/
 #ifndef _YSFIO_IPROTOCOL_
 #define _YSFIO_IPROTOCOL_
+#include <string>
+#include "AYSFIOHandle.h"
+
+namespace YSFIO
+{
+	class IYSFIOChannel;
+	class IYSFIORole;
+	class BytesMsg;
+	class UserData;
+	class UserMsg;
+
+	class IYSFIOProtocol :
+		public AYSFIOHandle
+	{
+	public:
+		IYSFIOProtocol() = default;
+		virtual ~IYSFIOProtocol() = default;
+
+		/* 流数据 -> 用户数据 */
+		virtual UserData* Raw2Request(std::string& _input) = 0;
+
+		/* 用户数据 -> 流数据 */
+		virtual std::string	Response2Raw(UserData& _userData) = 0;
+
+	protected:
+		/* 获取上层业务处理角色 */
+		virtual	IYSFIORole* GetProcMsg(UserMsg& _msg) = 0;
+
+		/* 获取下层通道对象 */
+		virtual IYSFIOChannel* GetSender(BytesMsg& _msg) = 0;
+	private:
+		// 通过 AYSFIOHandle 继承
+		virtual YSFIOStreamMsg* InternelHandle(YSFIOStreamMsg& _msg) override;
+		virtual AYSFIOHandle* GetNext(YSFIOStreamMsg& _msg) override;
+	};
+}
 
 #endif // !_YSFIO_IPROTOCOL_
 

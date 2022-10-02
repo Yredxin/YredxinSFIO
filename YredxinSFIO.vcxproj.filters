@@ -33,6 +33,9 @@
     <ClInclude Include="YSFIO\IYSFIOChannel.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
+    <ClInclude Include="YSFIO\YSFIOStreamMsg.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="YSFIO\YSFIOKernel.cpp">
@@ -52,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp">
       <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="YSFIO\YSFIOStreamMsg.cpp">
+      <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="example\SimpleExampleRole.cpp">
+      <Filter>example</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +93,12 @@
       <Filter>YSFIO\resource</Filter>
     </Image>
     <Image Include="YSFIO\images\V1.7.png">
+      <Filter>YSFIO\resource</Filter>
+    </Image>
+    <Image Include="YSFIO\images\V2.0.png">
+      <Filter>YSFIO\resource</Filter>
+    </Image>
+    <Image Include="YSFIO\images\V2.0-demo.png">
       <Filter>YSFIO\resource</Filter>
     </Image>
   </ItemGroup>
