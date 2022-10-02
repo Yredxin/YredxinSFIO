@@ -7,9 +7,6 @@
     <Filter Include="resources">
       <UniqueIdentifier>{b4d71fc8-8d42-45ff-bee2-bb01af640792}</UniqueIdentifier>
     </Filter>
-    <Filter Include="YSFIO\resource">
-      <UniqueIdentifier>{e015e19e-234d-4ca8-abf5-473dfe649e6e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="example">
       <UniqueIdentifier>{85d3d047-1be3-48fa-8ee0-c468b3857898}</UniqueIdentifier>
     </Filter>
@@ -64,42 +61,39 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="YSFIO\README.md">
-      <Filter>YSFIO</Filter>
-    </None>
     <None Include="README.md" />
     <None Include="YredxinSFIO.licenseheader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="YSFIO\images\V1.0.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.0.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.1.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.1.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.2.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.2.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.3.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.3.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.4.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.4.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.5.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.5.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.6.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.6.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V1.7.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V1.7.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V2.0.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V2.0.png">
+      <Filter>resources</Filter>
     </Image>
-    <Image Include="YSFIO\images\V2.0-demo.png">
-      <Filter>YSFIO\resource</Filter>
+    <Image Include="images\V2.0-demo.png">
+      <Filter>resources</Filter>
     </Image>
   </ItemGroup>
 </Project>

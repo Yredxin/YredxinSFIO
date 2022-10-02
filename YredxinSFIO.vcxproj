@@ -96,19 +96,18 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="YredxinSFIO.licenseheader" />
-    <None Include="YSFIO\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="YSFIO\images\V1.0.png" />
-    <Image Include="YSFIO\images\V1.1.png" />
-    <Image Include="YSFIO\images\V1.2.png" />
-    <Image Include="YSFIO\images\V1.3.png" />
-    <Image Include="YSFIO\images\V1.4.png" />
-    <Image Include="YSFIO\images\V1.5.png" />
-    <Image Include="YSFIO\images\V1.6.png" />
-    <Image Include="YSFIO\images\V1.7.png" />
-    <Image Include="YSFIO\images\V2.0-demo.png" />
-    <Image Include="YSFIO\images\V2.0.png" />
+    <Image Include="images\V1.0.png" />
+    <Image Include="images\V1.1.png" />
+    <Image Include="images\V1.2.png" />
+    <Image Include="images\V1.3.png" />
+    <Image Include="images\V1.4.png" />
+    <Image Include="images\V1.5.png" />
+    <Image Include="images\V1.6.png" />
+    <Image Include="images\V1.7.png" />
+    <Image Include="images\V2.0-demo.png" />
+    <Image Include="images\V2.0.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

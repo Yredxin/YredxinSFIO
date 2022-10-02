@@ -52,7 +52,7 @@ public:
 		{
 			if (oMyData.info.empty())
 			{
-				oMyData.info = "早上好" + oMyData.name + ((oMyData.sex == "男") ? "先生" : "女士") + "！";
+				oMyData.info = "你好" + oMyData.name + ((oMyData.sex == "男") ? "先生" : "女士") + "！";
 			}
 			else
 			{
