@@ -29,6 +29,23 @@ namespace YSFIO
 		}
 	}
 
+	std::string IYSFIOChannel::Convert2Printable(std::string& _input)
+	{
+		char* buf = (char*)calloc(1, _input.size() * 2 + 1);
+		std::string retBuf;
+		if (nullptr != buf)
+		{
+			int pos = 0;
+			for (auto& chr : _input)
+			{
+				pos += sprintf(buf + pos, "%02X", static_cast<unsigned char>(chr));
+			}
+			retBuf = buf;
+			free(buf);
+		}
+		return retBuf;
+	}
+
 	YSFIOStreamMsg* IYSFIOChannel::InternelHandle(YSFIOStreamMsg& _msg)
 	{
 		GET_REF2DATA(YSFIOFrameMsg, oFrame, _msg);

@@ -144,6 +144,7 @@ public:
 	}
 };
 
+#if 0
 int main()
 {
 	Role* role = new Role;
@@ -161,3 +162,4 @@ int main()
 	YSFIOKernel::Fini();
 	return 0;
 }
+#endif

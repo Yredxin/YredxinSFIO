@@ -130,6 +130,31 @@ namespace YSFIO
 		kernel->m_isRun = false;
 	}
 
+	std::list<IYSFIOChannel*> YSFIOKernel::GetInfoChannel(const std::string& _info)
+	{
+		std::list<IYSFIOChannel*> channelList;
+		for (auto& channel : kernel->m_lChannel)
+		{
+			if (channel->GetChannelInfo() == _info)
+			{
+				channelList.push_back(channel);
+			}
+		}
+		return channelList;
+	}
+
+	IYSFIOChannel* YSFIOKernel::GetFirstInfoChannel(const std::string& _info)
+	{
+		for (auto& channel : kernel->m_lChannel)
+		{
+			if (channel->GetChannelInfo() == _info)
+			{
+				return channel;
+			}
+		}
+		return nullptr;
+	}
+
 	YSFIOKernel::YSFIOKernel() :
 		m_epollFd{ -1 },
 		m_isRun{ false }
@@ -358,6 +383,10 @@ namespace YSFIO
 			/* 读事件 */
 			YSFIOFrameMsg msg{ YSFIOFrameMsg::FrameMsgType::IN };
 			channel->Handle(msg);
+			if (channel->IsNeedClose())
+			{
+				DelChannel(channel);
+			}
 		}
 		if (EPOLLOUT & _evn.events)
 		{

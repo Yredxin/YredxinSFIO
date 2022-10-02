@@ -77,12 +77,14 @@
   <ItemGroup>
     <ClCompile Include="example\SimpleExampleEcho.cpp" />
     <ClCompile Include="example\SimpleExampleRole.cpp" />
+    <ClCompile Include="example\SimpleExampleTcp.cpp" />
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp" />
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp" />
     <ClCompile Include="YSFIO\IYSFIOProtocol.cpp" />
     <ClCompile Include="YSFIO\IYSFIORole.cpp" />
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
     <ClCompile Include="YSFIO\YSFIOStreamMsg.cpp" />
+    <ClCompile Include="YSFIO\YSFIOTcpModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="YSFIO\AYSFIOHandle.h" />
@@ -92,6 +94,7 @@
     <ClInclude Include="YSFIO\util.h" />
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
     <ClInclude Include="YSFIO\YSFIOStreamMsg.h" />
+    <ClInclude Include="YSFIO\YSFIOTcpModule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -108,6 +111,7 @@
     <Image Include="images\V1.7.png" />
     <Image Include="images\V2.0-demo.png" />
     <Image Include="images\V2.0.png" />
+    <Image Include="images\V2.1.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

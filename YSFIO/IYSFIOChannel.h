@@ -50,10 +50,19 @@ namespace YSFIO
 		/* 是否有缓存 */
 		inline bool HasCache() { return !m_writeBuf.empty(); };
 
+		/* 设置关闭通道 */
+		inline void SetNeedClose() { m_isClose = true; };
+
+		/* 判断是否需要关闭 */
+		inline bool IsNeedClose() { return m_isClose; };
+
+		/* 将数据以二进制输出 */
+		std::string Convert2Printable(std::string& _input);
+
 	private:
 		/* 需要输出数据临时存放 */
 		std::list<std::string> m_writeBuf;
-
+		bool m_isClose = false;
 		// 通过 AYSFIOHandle 继承
 		virtual YSFIOStreamMsg* InternelHandle(YSFIOStreamMsg& _msg) override;
 		virtual AYSFIOHandle* GetNext(YSFIOStreamMsg& _msg) override;

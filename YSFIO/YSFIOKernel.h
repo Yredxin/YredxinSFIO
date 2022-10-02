@@ -56,6 +56,11 @@ namespace YSFIO
 
 		/* 框架退出 */
 		static void Exit();
+
+		/* 获取字符串描述的通道列表，参数2为输出参数 */
+		static std::list<IYSFIOChannel*> GetInfoChannel(const std::string& _info);
+		/* 获取第一个匹配的字符串描述的通道，参数2为输出参数 */
+		static IYSFIOChannel* GetFirstInfoChannel(const std::string& _info);
 	private:
 		/* 禁止构造 */
 		YSFIOKernel();
