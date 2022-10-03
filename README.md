@@ -16,7 +16,7 @@
 - BytesMsg -- 流式消息传递类，在个业务内相互
 
 # 最新类图
-![V2.1 UML图](./images/V2.1.png)
+![V2.2 UML图](./images/V2.2.png)
 
 # 迭代过程
 > V1.0 框架搭建  
@@ -35,8 +35,9 @@
     - 新增业务层 **IYSFIORole**
     - 消息对象重构
 - V2.1 添加TCP通信模块
+- V2.2 添加定时器任务处理模块
 
-# 快速入门
+# 框架快速入门
 > 注意：将通道/协议/角色需要堆上开辟，且添加到框架后，框架会吸收堆内存，不在需要释放
 - 框架使用流程
     1. 调用*YSFIO::YSFIOKernel::Init*初始化框架数据
@@ -55,6 +56,17 @@
     1. 参数1：为目标消息类型
 	2. 参数2：为自定义变量名
 	3. 参数3：为原始消息对象
+
+# TCP模块快速入门
+- 继承**YSFIOTcpData**生成自己的TCP处理对象
+- 继承**IYSFIOTcpFactory**返回自己的TCP处理堆对象
+- 构造**YSFIOTcpListen**对象，并调用*YSFIO::YSFIOKernel::AddChannel*将其添加到通道
+
+# 任务处理模快速入门
+> 步骤不可颠倒，按顺序使用
+1. 继承**IYSFIOTask**生成自己的任务处理类
+2. 构造*YSFIOTimerMngChannel*对象，并调用*YSFIO::YSFIOKernel::AddChannel*将其加入框架通道中
+3. 调用*YSFIO::YSFIOTimerTaskProc::AddTask*将任务堆对象加入队列
 
 # 示例
 > 输入“姓名|性别”，输出“你好`姓名`先生/女士”
@@ -215,3 +227,5 @@
     ![V2.0 UML图](./images/V2.0.png)
 - V2.1   
     ![V2.1 UML图](./images/V2.1.png)
+- V2.2   
+    ![V2.2 UML图](./images/V2.2.png)

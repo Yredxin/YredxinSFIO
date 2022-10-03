@@ -4,11 +4,11 @@
     <Filter Include="YSFIO">
       <UniqueIdentifier>{f9bf781a-a1ea-426c-b37b-70165b7ebbf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="resources">
-      <UniqueIdentifier>{b4d71fc8-8d42-45ff-bee2-bb01af640792}</UniqueIdentifier>
-    </Filter>
     <Filter Include="example">
       <UniqueIdentifier>{85d3d047-1be3-48fa-8ee0-c468b3857898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="YSFIO\resources">
+      <UniqueIdentifier>{b4d71fc8-8d42-45ff-bee2-bb01af640792}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +34,9 @@
       <Filter>YSFIO</Filter>
     </ClInclude>
     <ClInclude Include="YSFIO\YSFIOTcpModule.h">
+      <Filter>YSFIO</Filter>
+    </ClInclude>
+    <ClInclude Include="YSFIO\YSFIOTimeoutModule.h">
       <Filter>YSFIO</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,44 +71,53 @@
     <ClCompile Include="example\SimpleExampleTcp.cpp">
       <Filter>example</Filter>
     </ClCompile>
+    <ClCompile Include="YSFIO\YSFIOTimeoutModule.cpp">
+      <Filter>YSFIO</Filter>
+    </ClCompile>
+    <ClCompile Include="example\SimpleExampleTimerTask.cpp">
+      <Filter>example</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
     <None Include="YredxinSFIO.licenseheader" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\V1.0.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.1.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.2.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.3.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.4.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.5.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.6.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V1.7.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V2.0.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V2.0-demo.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
     </Image>
     <Image Include="images\V2.1.png">
-      <Filter>resources</Filter>
+      <Filter>YSFIO\resources</Filter>
+    </Image>
+    <Image Include="images\V2.2.png">
+      <Filter>YSFIO\resources</Filter>
     </Image>
   </ItemGroup>
 </Project>

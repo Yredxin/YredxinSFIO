@@ -1,7 +1,7 @@
 ﻿/*************************************************************************************
  *
  * 文 件 名:	YSFIOTcpModule.cpp
- * 描    述:
+ * 描    述:	TCP通信模块
  *
  * 版 本 号：  	V1.0
  * 创 建 者：  	Yredxin -- 杨红心
@@ -133,11 +133,13 @@ namespace YSFIO
 			if (0 > bind(fd, (sockaddr*)&addr, sizeof(addr)))
 			{
 				LOG("socket bind error");
+				close(fd);
 				break;
 			}
 			if (0 > listen(fd, 10))
 			{
 				LOG("socket listen error");
+				close(fd);
 				break;
 			}
 			m_listenFd = fd;

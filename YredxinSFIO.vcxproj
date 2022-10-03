@@ -78,6 +78,7 @@
     <ClCompile Include="example\SimpleExampleEcho.cpp" />
     <ClCompile Include="example\SimpleExampleRole.cpp" />
     <ClCompile Include="example\SimpleExampleTcp.cpp" />
+    <ClCompile Include="example\SimpleExampleTimerTask.cpp" />
     <ClCompile Include="YSFIO\AYSFIOHandle.cpp" />
     <ClCompile Include="YSFIO\IYSFIOChannel.cpp" />
     <ClCompile Include="YSFIO\IYSFIOProtocol.cpp" />
@@ -85,6 +86,7 @@
     <ClCompile Include="YSFIO\YSFIOKernel.cpp" />
     <ClCompile Include="YSFIO\YSFIOStreamMsg.cpp" />
     <ClCompile Include="YSFIO\YSFIOTcpModule.cpp" />
+    <ClCompile Include="YSFIO\YSFIOTimeoutModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="YSFIO\AYSFIOHandle.h" />
@@ -95,6 +97,7 @@
     <ClInclude Include="YSFIO\YSFIOKernel.h" />
     <ClInclude Include="YSFIO\YSFIOStreamMsg.h" />
     <ClInclude Include="YSFIO\YSFIOTcpModule.h" />
+    <ClInclude Include="YSFIO\YSFIOTimeoutModule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -112,6 +115,7 @@
     <Image Include="images\V2.0-demo.png" />
     <Image Include="images\V2.0.png" />
     <Image Include="images\V2.1.png" />
+    <Image Include="images\V2.2.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

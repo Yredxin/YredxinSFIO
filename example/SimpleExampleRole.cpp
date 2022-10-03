@@ -1,7 +1,7 @@
 ﻿/*************************************************************************************
  *
  * 文 件 名:	SimpleExampleRole.cpp
- * 描    述:
+ * 描    述:	通道-协议-角色分工demo，输入"姓名|性别"，输出"早上好xxx先生"
  *
  * 版 本 号：  	V1.0
  * 创 建 者：  	Yredxin -- 杨红心
@@ -144,7 +144,6 @@ public:
 	}
 };
 
-#if 0
 int main()
 {
 	Role* role = new Role;
@@ -162,4 +161,3 @@ int main()
 	YSFIOKernel::Fini();
 	return 0;
 }
-#endif

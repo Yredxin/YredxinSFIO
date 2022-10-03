@@ -1,7 +1,7 @@
 ﻿/*************************************************************************************
  *
  * 文 件 名:	SimpleExampleEcho.cpp
- * 描    述:	回显例子
+ * 描    述:	通道类demo，输入什么就输出什么
  *
  * 版 本 号：  	V1.0
  * 创 建 者：  	Yredxin -- 杨红心
@@ -105,7 +105,6 @@ public:
 	}
 }*in = new TestIn{};
 
-#if 0
 int main()
 {
 	using namespace YSFIO;
@@ -119,4 +118,3 @@ int main()
 	echo = nullptr;
 	return 0;
 }
-#endif
