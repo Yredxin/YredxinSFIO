@@ -46,7 +46,9 @@ namespace YSFIO
 		static bool Init();
 		static void Fini();
 		static YSFIOTimerTaskProc& GetTaskProc();
+		/* 会吸收对象堆空间 */
 		static bool AddTask(IYSFIOTask* _task);
+		/* 会释放掉对象堆空间 */
 		static void DelTask(IYSFIOTask* _task);
 	private:
 		std::vector<std::list<IYSFIOTask*>> m_lTask;

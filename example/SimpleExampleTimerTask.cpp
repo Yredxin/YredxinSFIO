@@ -62,6 +62,7 @@ public:
 	}
 };
 
+
 int main()
 {
 	YSFIO::YSFIOKernel::Init();

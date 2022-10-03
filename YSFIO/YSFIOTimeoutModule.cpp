@@ -91,7 +91,6 @@ namespace YSFIO
 		std::list<IYSFIOTask*> needProcTask;
 		while (timerCount-- > 0)
 		{
-			++m_pos;
 			m_pos %= TimerQueryLen;
 			/* 暂存超时任务 */
 			std::list<IYSFIOTask*> tasks;
@@ -113,12 +112,14 @@ namespace YSFIO
 				{
 					needProcTask.remove(task);
 					delete task;
+					task = nullptr;
 				}
 				else
 				{
 					AddTask(task);
 				}
 			}
+			++m_pos;
 		}
 		/* 任务处理单独抽离，防止任务处理过长，任务添加错乱 */
 		/* 处理所有触发任务 */
