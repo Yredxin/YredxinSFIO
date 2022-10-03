@@ -32,7 +32,7 @@ namespace YSFIO
 		virtual UserData* Raw2Request(std::string& _input) = 0;
 
 		/* 用户数据 -> 流数据 */
-		virtual std::string	Response2Raw(UserData& _userData) = 0;
+		virtual std::string* Response2Raw(UserData& _userData) = 0;
 
 	protected:
 		/* 获取上层业务处理角色 */

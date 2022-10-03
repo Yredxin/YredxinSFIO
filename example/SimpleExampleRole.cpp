@@ -92,10 +92,10 @@ public:
 		}
 		return retData;
 	}
-	virtual std::string Response2Raw(UserData& _userData) override
+	virtual std::string* Response2Raw(UserData& _userData) override
 	{
 		GET_REF2DATA(MyData, oMyData, _userData);
-		return oMyData.info;
+		return new std::string{ oMyData.info };
 	}
 	virtual IYSFIORole* GetProcMsg(UserMsg& _msg) override
 	{

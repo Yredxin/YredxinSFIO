@@ -15,6 +15,6 @@ aux_source_directory(./example EX_SRC)
  FOREACH(FILE_PATH ${EX_SRC})
      STRING(REGEX REPLACE ".+/(.+)\\..*" "\\1" FILE_NAME ${FILE_PATH})
      add_executable(${FILE_NAME} ${FILE_PATH} ${ROOT_SRC})
-     target_link_libraries(${FILE_NAME} ysfio_shared)
+     target_link_libraries(${FILE_NAME} ysfio)
  ENDFOREACH(FILE_PATH)
  

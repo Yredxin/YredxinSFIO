@@ -39,7 +39,9 @@ namespace YSFIO
 		{
 			GET_REF2DATA(UserMsg, oUser, oFrame);
 			BytesMsg* newMsg = new BytesMsg(oFrame);
-			newMsg->bytesData = Response2Raw(*(oUser.userData));
+			auto resMsg = Response2Raw(*(oUser.userData));
+			newMsg->bytesData = *resMsg;
+			delete resMsg;
 			if (!newMsg->bytesData.empty())
 			{
 				retMsg = newMsg;
