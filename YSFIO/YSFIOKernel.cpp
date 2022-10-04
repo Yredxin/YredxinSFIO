@@ -276,7 +276,7 @@ namespace YSFIO
 				break;
 			}
 			epoll_event evn;
-			evn.events = EPOLLIN;
+			evn.events = EPOLLIN | EPOLLOUT;
 			evn.data.ptr = static_cast<void*>(_channel);
 			if (0 > epoll_ctl(m_epollFd, EPOLL_CTL_ADD, _channel->GetFd(), &evn))
 			{
