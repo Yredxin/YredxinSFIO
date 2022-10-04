@@ -116,6 +116,7 @@
     <Image Include="images\V2.0.png" />
     <Image Include="images\V2.1.png" />
     <Image Include="images\V2.2.png" />
+    <Image Include="images\V2.3.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

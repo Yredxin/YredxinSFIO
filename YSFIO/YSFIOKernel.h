@@ -61,6 +61,13 @@ namespace YSFIO
 		static std::list<IYSFIOChannel*> GetInfoChannel(const std::string& _info);
 		/* 获取第一个匹配的字符串描述的通道，参数2为输出参数 */
 		static IYSFIOChannel* GetFirstInfoChannel(const std::string& _info);
+
+		/* 获取所有的通道 */
+		static std::list<IYSFIOChannel*>& GetAllChannel();
+		/* 获取所有的协议 */
+		static std::list<IYSFIOProtocol*>& GetAllProtocol();
+		/* 获取所有的角色 */
+		static std::list<IYSFIORole*>& GetAllRole();
 	private:
 		/* 禁止构造 */
 		YSFIOKernel();

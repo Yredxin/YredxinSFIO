@@ -155,6 +155,21 @@ namespace YSFIO
 		return nullptr;
 	}
 
+	std::list<IYSFIOChannel*>& YSFIOKernel::GetAllChannel()
+	{
+		return kernel->m_lChannel;
+	}
+
+	std::list<IYSFIOProtocol*>& YSFIOKernel::GetAllProtocol()
+	{
+		return kernel->m_lProtocol;
+	}
+
+	std::list<IYSFIORole*>& YSFIOKernel::GetAllRole()
+	{
+		return kernel->m_lRole;
+	}
+
 	YSFIOKernel::YSFIOKernel() :
 		m_epollFd{ -1 },
 		m_isRun{ false }
